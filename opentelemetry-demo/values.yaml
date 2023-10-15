@@ -3,7 +3,7 @@ opentelemetry-demo:
     recommendationService:
       envOverrides:
       - name: ENABLE_CACHE
-        value: true
+        value: false
       podAnnotations:
         logzio/commit_url: somecommit
       resources:
