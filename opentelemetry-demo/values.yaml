@@ -1,31 +1,26 @@
 opentelemetry-demo:
-  default:
-    envOverrides:
-      - name: OTEL_COLLECTOR_NAME
-        value: mycomp-monitoring-otel-collector.demo-monitoring.svc.cluster.local
-
-  opentelemetry-collector:
-    enabled: false
-
-  jaeger:
-    enabled: false
-
-  prometheus:
-    enabled: false
-
-  grafana:
-    enabled: false
-
   components:
     recommendationService:
       envOverrides:
-        - name: ENABLE_CACHE
-          value: false
+      - name: ENABLE_CACHE
+        value: true
       podAnnotations:
         logzio/commit_url: somecommit
-      service:
-        annotations:
-          logzio/commit_url: somecommit
       resources:
         limits:
           memory: 1000Mi
+      service:
+        annotations:
+          logzio/commit_url: somecommit
+  default:
+    envOverrides:
+    - name: OTEL_COLLECTOR_NAME
+      value: mycomp-monitoring-otel-collector.demo-monitoring.svc.cluster.local
+  grafana:
+    enabled: false
+  jaeger:
+    enabled: false
+  opentelemetry-collector:
+    enabled: false
+  prometheus:
+    enabled: false
